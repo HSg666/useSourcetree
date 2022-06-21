@@ -1,0 +1,32 @@
+主分支(main)合并子分支(lhs)上
+子分支(lhs)
+  git add .
+  git commit -m '说明'
+  git pull
+  git push
+  git pull
+
+切换到主分支
+ git checkout main
+
+主分支
+  git pull
+  git merge 子分支名
+  如果合并时当前主分支名没有出现主分支和子分支名(main|lhs),说明合并没有冲突,可以直接提交
+  git push
+  git pull
+
+  如果有冲突，打开VSCode解决冲突后，当前主分支需要重新将合并后的文件进行提交
+  git add .
+  git commit -m 'merge:解决了哪些冲突'
+  git push
+  git pull
+  到这里已完成主分支合并子分支的所有流程
+
+子分支(lhs)合并主分支(main)
+ git checkout main  切换到主分支
+ git pull          将主分支代码拉到本地
+ git checkout lhs  切换到子分支
+ git merge main    在子分支合并主分支最新代码
+ git push          提交更新子分支在远端分支上的代码
+ git pull          再重新拉远端的代码下来
