@@ -5,7 +5,7 @@
     git pull               拉远程自己分支上的代码下来，少了这一步有时会出现代码本地分支提交后部分代码丢失的bug
     git push               将本地子分支(lhs)的代码同步更新到远程子分支(lhs)上
     git pull               再将远程最新代码拉下来,用于给主分支合并
-    git checkout main 切换到主分支(main)
+    git checkout main      切换到主分支(main)
 
   主分支(main)
     git pull                拉远程主分支(main)代码下来
