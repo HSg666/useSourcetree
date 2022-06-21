@@ -1,8 +1,9 @@
 一、主分支(main)合并子分支(lhs)上
   1、子分支(lhs)
+    git status             查看已更改哪些文件
     git add .              提交到本地暂存区
     git commit -m '说明'   将暂存区的文件提交到本地分支仓库区(store)  (必须执行这一步，否则在所有分支上都能看到你分支提交在暂存里的文件,偶尔还会出现代码丢失的bug)
-    git pull               拉远程自己分支上的代码下来，少了这一步有时会出现代码本地分支提交后部分代码丢失的bug
+    git pull               拉远程自己分支(lhs)上的代码下来，少了这一步有时会出现代码本地分支提交后部分代码丢失的bug
     git push               将本地子分支(lhs)的代码同步更新到远程子分支(lhs)上
     git pull               再将远程最新代码拉下来,用于给主分支合并
     git checkout main      切换到主分支(main)
@@ -12,22 +13,35 @@
     git merge 子分支(lhs)   这里就是主分支合并子分支
     
     下面两个根据实际情况任选其一即可：
-      (1)、如果合并时当前主分支名没有出现主分支和子分支名(main|lhs),说明合并没有冲突,可以直接提交
-      git push        
-      git pull
+      (1)、如果合并时当前主分支名没有出现主分支和子分支(例如:main|lhs),说明合并没有冲突,可以直接提交
+      git push        将本地仓库的代码更新到远程主分支(main)
+      git pull        再将远程主分支(main)代码更新到本地
 
       (2)、如果有冲突，打开VSCode与[开发同项目伙伴]一起解决冲突确认无误后，当前主分支需要重新将合并后的文件进行提交
+      git status                             查看已更改哪些文件
       git add .                              提交到暂存区
       git commit -m 'merge:解决了哪些冲突'    将暂存区的文件提交到本地分支仓库区(store)
       git push                               将本地仓库的代码更新到远程主分支(main)
-      git pull                               再将远程主分支代码更新到本地
+      git pull                               再将远程主分支(main)代码更新到本地
   
     到这里已完成主分支合并子分支的所有流程
 
 二、子分支(lhs)合并主分支(main)
     git checkout main  切换到主分支(main)
-    git pull           将主分支代码拉到本地
-    git checkout lhs   切换到子分支
-    git merge main     在子分支合并主分支最新代码
-    git push           提交更新子分支在远端分支上的代码
+    git pull           将主分支(main)远端代码拉到本地
+    git checkout lhs   切换到子分支(lhs)
+    git merge main     在子分支(lhs)合并主分支(main)
+    git push           将本地仓库的代码更新到远程子分支(lhs)
     git pull           再重新拉远端的代码下来
+
+额外补充说明：本地祖分支是HEAD,远端祖分支是origin,之所以本地更新完代码到远端后需要再拉下来，是因为这样能100%确保远端分支上的代码与本地分支代码保持一致性。
+
+git commit -m '英语前缀标识:更改说明'  每次提交都写附上英语前缀标识,示例: 'feat:新增收货地址功能'，方便以后回滚和查看。
+英语前缀标识说明：
+  feat:  新增某些功能
+  edit:  修改或修复哪些功能
+  del:   删除哪些功能
+  style: 修改哪个模块的样式
+
+Author: houslin
+Date: 2022/06/22 00:47:00
